@@ -1,0 +1,27 @@
+{
+  "name": "video-sharing-platform",
+  "version": "1.0.0",
+  "description": "VidShare is a video sharing platform that allows users to upload, discover, and interact with videos from all over the world. Whether you're a content creator, a video enthusiast, or just looking for engaging content, VidShare has something for everyone.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaikahmadnawaz/video-sharing-platform.git"
+  },
+  "author": "Shaik Ahmad Nawaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaikahmadnawaz/video-sharing-platform/issues"
+  },
+  "homepage": "https://github.com/shaikahmadnawaz/video-sharing-platform#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
