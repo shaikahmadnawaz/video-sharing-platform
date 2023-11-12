@@ -1,29 +1,39 @@
-import { v2 as cloudinary } from "cloudinary";
+import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
 import fs from "fs";
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+interface CloudinaryConfig {
+  cloud_name: string;
+  api_key: string;
+  api_secret: string;
+}
 
-const uploadOnCloudinary = async (localFilePath) => {
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME as string,
+  api_key: process.env.CLOUDINARY_API_KEY as string,
+  api_secret: process.env.CLOUDINARY_API_SECRET as string,
+} as CloudinaryConfig);
+
+const uploadOnCloudinary = async (
+  localFilePath: string
+): Promise<UploadApiResponse | null> => {
   try {
     if (!localFilePath) {
       return null;
-
-      // Upload to Cloudinary
-      const response = await cloudinary.uploader.upload(localFilePath, {
-        resource_type: "auto",
-      });
-      // file is uploaded to Cloudinary
-      console.log("file uploaded to Cloudinary", response.url);
-
-      return response;
     }
+
+    // Upload to Cloudinary
+    const response = await cloudinary.uploader.upload(localFilePath, {
+      resource_type: "auto",
+    });
+    // file is uploaded to Cloudinary
+    console.log("file uploaded to Cloudinary", response.url);
+
+    return response;
   } catch (error) {
-    fs.unlinkSync(localFilePath); // delete the file from node server
-    console.log(error);
+    fs.unlinkSync(localFilePath); // delete the file from the node server
+    console.error(error);
     return null;
   }
 };
+
+export { uploadOnCloudinary };

@@ -1,6 +1,6 @@
-import multer from "multer";
+import multer, { StorageEngine } from "multer";
 
-const storage = multer.diskStorage({
+const storage: StorageEngine = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./public/temp");
   },
