@@ -1,5 +1,7 @@
 import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
 import fs from "fs";
+import dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
 
 interface CloudinaryConfig {
   cloud_name: string;
@@ -26,8 +28,8 @@ const uploadOnCloudinary = async (
       resource_type: "auto",
     });
     // file is uploaded to Cloudinary
-    console.log("file uploaded to Cloudinary", response.url);
-
+    // console.log("file uploaded to Cloudinary", response.url);
+    fs.unlinkSync(localFilePath); // delete the file from the node server
     return response;
   } catch (error) {
     fs.unlinkSync(localFilePath); // delete the file from the node server

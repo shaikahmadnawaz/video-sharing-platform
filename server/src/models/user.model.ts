@@ -18,7 +18,7 @@ interface IUser extends Document {
 
 const userSchema: Schema = new Schema(
   {
-    username: {
+    userName: {
       type: String,
       required: true,
       unique: true,
@@ -112,4 +112,4 @@ userSchema.methods.generateRefreshToken = function (): string {
   return token;
 };
 
-export default mongoose.model<IUser>("User", userSchema);
+export const User = mongoose.model<IUser>("User", userSchema);
