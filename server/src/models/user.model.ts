@@ -93,7 +93,7 @@ userSchema.methods.generateAccessToken = function (): string {
     },
     process.env.ACCESS_TOKEN_SECRET as string,
     {
-      expiresIn: parseInt(process.env.ACCESS_TOKEN_EXPIRE as string, 10),
+      expiresIn: process.env.ACCESS_TOKEN_EXPIRE || "1d", // default to 1 hour if not set
     }
   );
   return token;
@@ -106,7 +106,7 @@ userSchema.methods.generateRefreshToken = function (): string {
     },
     process.env.REFRESH_TOKEN_SECRET as string,
     {
-      expiresIn: parseInt(process.env.REFRESH_TOKEN_EXPIRE as string, 10),
+      expiresIn: process.env.REFRESH_TOKEN_EXPIRE || "10d", // default to 7 days if not set
     }
   );
   return token;
